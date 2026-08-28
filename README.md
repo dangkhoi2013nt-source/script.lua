@@ -1,4 +1,4 @@
-# script.lualocal Players = game:GetService("Players")
+local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local Lighting = game:GetService("Lighting")
 local RunService = game:GetService("RunService")
