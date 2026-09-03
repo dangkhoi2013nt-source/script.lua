@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dkhoi Hub - Hệ Thống Lấy Key</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0d14;
+            --card-bg: #121520;
+            --primary: #ff2d55;
+            --secondary: #00f2fe;
+            --accent-green: #00ff88;
+            --border-glow: linear-gradient(135deg, #ff2d55, #00f2fe);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 70%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            padding: 1px;
+            background: var(--border-glow);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, rgba(255,45,85,0.2), rgba(0,242,254,0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff2d55, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #8a8fadc2;
+            margin-top: 4px;
+        }
+
+        .badge-system {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: #717693;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .key-box-wrapper {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .key-display {
+            width: 100%;
+            background: #080a0f;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--secondary);
+            font-family: monospace;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            margin: 10px 0;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-action {
+            background: linear-gradient(90deg, #00f2fe, #00ff88);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .guide-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 12px;
+            color: #a0a5c0;
+            line-height: 1.6;
+        }
+
+        .guide-title {
+            color: #ffb703;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="icon-box">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4m10-2h.01m-3 0h.01"/></svg>
+            </div>
+            <h1 class="title">Dkhoi Hub</h1>
+            <p class="subtitle">script: Dkhoi Cheat Roblox V4.2</p>
+            <span class="badge-system">● Hệ Thống Lấy Key Tự Động</span>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="info-label">Thời hạn Key:</div>
+                <div class="info-value">Vĩnh Viễn</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Trạng thái:</div>
+                <div class="info-value" id="status-text">Sẵn Sàng</div>
+            </div>
+        </div>
+
+        <div class="key-box-wrapper">
+            <div style="font-size: 12px; color: #8a8fadc2;">MÃ KEY CỦA BẠN:</div>
+            <input type="text" id="key-input" class="key-display" value="Đang kiểm tra..." readonly>
+            <button class="btn btn-action" id="main-btn" onclick="handleButtonClick()">
+                <span id="btn-text">BẤM VÀO ĐÂY ĐỂ LẤY KEY</span>
+            </button>
+        </div>
+
+        <div class="guide-box">
+            <div class="guide-title">📌 Hướng dẫn sử dụng:</div>
+            1. Bấm nút <b>LẤY KEY NGAY</b> để vượt link lấy mã.<br>
+            2. Vượt link 1 lần duy nhất để lấy Key.<br>
+            3. Sao chép Key dán vào Roblox để sử dụng!
+        </div>
+    </div>
+
+    <script>
+        // Cấu hình Link Vượt (Thay bằng link rút gọn của bạn)
+        const LINK_VUOT_KEY = "https://yeumoney.com/your-link-here";
+
+        // Kiểm tra xem đã vượt link chưa bằng URL Parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPassed = urlParams.get('verified') === 'true';
+
+        const keyInput = document.getElementById('key-input');
+        const btnText = document.getElementById('btn-text');
+        const statusText = document.getElementById('status-text');
+
+        // Hàm tạo Random Key ngẫu nhiên theo phiên
+        function generateKey() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let randStr = "";
+            for (let i = 0; i < 6; i++) {
+                randStr += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return "DkhoiHub-" + randStr;
+        }
+
+        if (isPassed) {
+            // ĐÃ VƯỢT LINK THÀNH CÔNG
+            let savedKey = localStorage.getItem('user_key');
+            if (!savedKey) {
+                savedKey = generateKey();
+                localStorage.setItem('user_key', savedKey);
+            }
+            keyInput.value = savedKey;
+            btnText.innerText = "SAO CHÉP KEY VÀO BỘ NHỚ TẠM";
+            statusText.innerText = "Đã Xong ✓";
+        } else {
+            // CHƯA VƯỢT LINK
+            keyInput.value = "KHOA-KEY-CHUA-XAC-THUC";
+            btnText.innerText = "LẤY KEY NGAY (VƯỢT LINK)";
+            statusText.innerText = "Chờ Xác Thực";
+        }
+
+        function handleButtonClick() {
+            if (isPassed) {
+                // Thao tác Copy Key
+                keyInput.select();
+                navigator.clipboard.writeText(keyInput.value);
+                alert("Đã sao chép Key thành công: " + keyInput.value);
+            } else {
+                // Chuyển hướng tới Link Vượt
+                window.location.href = LINK_VUOT_KEY;
+            }
+        }
+    </script>
+</body>
+</html>
